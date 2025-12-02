@@ -10,7 +10,10 @@ console.log("Available NEXT_PUBLIC keys:", Object.keys(process.env).filter(k => 
 console.log("--------------------------");
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error("Missing Supabase environment variables");
+  console.warn("Missing Supabase environment variables. Supabase client will not be initialized correctly.");
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(
+  supabaseUrl || "https://placeholder.supabase.co",
+  supabaseAnonKey || "placeholder"
+);
